@@ -1,5 +1,4 @@
 *.iml
-.DS_Store
 /.idea/
 /variables.sh
 certs/
@@ -11,3 +10,4 @@ serial*
 crlnumber*
 index.txt*
 certbackup.zip
+.DS_Store
