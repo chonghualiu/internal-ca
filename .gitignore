@@ -4,6 +4,7 @@
 certs/
 crl/
 csr/
+venv/
 newcerts/
 private/
 serial*

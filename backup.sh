@@ -1,5 +1,5 @@
 #!/bin/sh
-# (c) Martin Erzberger 2019
+# (c) Martin Erzberger 2024
 # Backup all certificates
 
 # Change into CA directory

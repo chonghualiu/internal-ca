@@ -1,5 +1,5 @@
 #!/bin/bash
-# (c) Martin Erzberger 2022
+# (c) Martin Erzberger 2024
 # Renew a server certificate
 # Note: There is no such thing as an "openssl renew". Essentially a completely fresh certificate is created and
 #       signed. The only difference to "generateservercert" is that the server private key is reused.
@@ -63,6 +63,6 @@ $OPENSSL verify -CAfile ../rootca/certs/ca.cert.pem -untrusted certs/$1.$DOMAIN.
 $OPENSSL rsa -in private/$1.$DOMAIN.key.pem -passin env:SERVERKEYPWD -out private/$1.$DOMAIN.key.open.pem
 
 # If we get this far, then the old certificate is no longer needed. Recommend to delete it
-echo 'This script will fail in two years if you do not delete the old certificate that was just renewed!'
+echo 'This script will fail next year if you do not delete the old certificate that was just renewed!'
 echo 'So please delete it. Copy/paste this:'
 echo "rm -f issuingca/certs/$1.$DOMAIN.cert.pem.backup"

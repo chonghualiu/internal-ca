@@ -46,6 +46,9 @@ $OPENSSL ca -config ../rootca/openssl.cnf -batch -extensions v3_intermediate_ca 
       -passin env:ROOTKEYPWD \
       -in csr/issuing.csr.pem \
       -out certs/issuing.cert.pem
+# Make a combined root/issuing ca file, e.g. for curl or python use
+cat certs/issuing.cert.pem > certs/cacerts.pem
+cat ../rootca/certs/ca.cert.pem >> certs/cacerts.pem
 
 # Dump both certificatea for visual inspection
 echo

@@ -1,0 +1,80 @@
+# OpenSSL intermediate CA configuration file.
+
+[ ca ]
+# `man ca`
+default_ca = CA_default
+
+[ CA_default ]
+# Directory and file locations.
+dir               = $ENV::PROJECTROOT/issuingca
+certs             = $dir/certs
+crl_dir           = $dir/crl
+new_certs_dir     = $dir/newcerts
+database          = $dir/index.txt
+serial            = $dir/serial
+RANDFILE          = $dir/private/.rand
+copy_extensions   = copy
+unique_subject    = no
+
+# The root key and root certificate.
+private_key       = $dir/private/issuing.key.pem
+certificate       = $dir/certs/issuing.cert.pem
+
+# For certificate revocation lists.
+crlnumber         = $dir/crlnumber
+crl               = $dir/crl/issuing.crl.pem
+crl_extensions    = crl_ext
+default_crl_days  = 30
+
+# SHA-1 is deprecated, so use SHA-2 instead.
+default_md        = sha256
+
+name_opt          = ca_default
+cert_opt          = ca_default
+default_days      = 1095
+preserve          = no
+policy            = policy_loose
+
+[ policy_strict ]
+# The root CA should only sign intermediate certificates that match.
+# See the POLICY FORMAT section of `man ca`.
+countryName             = match
+stateOrProvinceName     = match
+organizationName        = match
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[ policy_loose ]
+# Allow the intermediate CA to sign a more diverse range of certificates.
+# See the POLICY FORMAT section of the `ca` man page.
+countryName             = optional
+stateOrProvinceName     = optional
+localityName            = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[ req ]
+# Options for the `req` tool (`man req`).
+default_md          = sha256
+default_bits        = 2048
+distinguished_name  = req_distinguished_name
+string_mask         = utf8only
+prompt              = no
+req_extensions      = codesign_reqext
+
+[ codesign_reqext ]
+keyUsage                = critical,digitalSignature
+extendedKeyUsage        = critical,codeSigning
+subjectKeyIdentifier    = hash
+
+[ req_distinguished_name ]
+countryName                     = $ENV::COUNTRY
+stateOrProvinceName             = $ENV::STATE
+localityName                    = $ENV::CITY
+0.organizationName              = $ENV::ORG
+organizationalUnitName          = $ENV::ORGUNIT
+commonName                      = $ENV::ISSUINGCANAME
+emailAddress                    = $ENV::EMAIL

@@ -7,7 +7,7 @@ If you know what you are doing, then this collection of scripts and config files
 operating a small home-use certification authority.
 
 # Preconditions
-The scripts are built for openssl. They were developed on a Mac, with openssl@1.1 installed via
+The scripts are built for openssl. They were developed on a Mac, with openssl@3 installed via
 homebrew. They should work fine on any Linux system, if you adapt the path to the openssl command
 in the script. The scripts are not tested in Windows, but I suspect they work fine in WSL, e.g.
 with Ubuntu.
@@ -42,7 +42,7 @@ Server certificates are created with `generateservercert.sh <host>`. After creat
 * Private key: `issuingca/private/`
 
 There will be an unencrypted key, because this is usually what you need on a server (e.g. on
-a Synology DSM, or on a VMWare ESXi virtualizer). Make sure to delete the open keys after importing!
+a Synology DSM, or on a Proxmox virtualizer). Make sure to delete the open keys after importing!
 If you need to re-import later, use `decryptkey.sh` to create another open key.
 
 # Renew server certificates
@@ -51,7 +51,7 @@ Server certificates are renewed with `renewservercert.sh <host>`. After renewal,
 * Private key: `issuingca/private/`
 
 There will be an unencrypted key, because this is usually what you need on a server (e.g. on
-a Synology DSM, or on a VMWare ESXi virtualizer). Make sure to delete the open keys after importing!
+a Synology DSM, or on a Proxmox virtualizer). Make sure to delete the open keys after importing!
 If you need to re-import later, use `decryptkey.sh` to create another open key.
 
 # References
@@ -59,21 +59,23 @@ A very big help was this document:
 https://jamielinux.com/docs/openssl-certificate-authority/introduction.html
 
 # TODO
-* Sign a 3rd party CSR
+* Document `generatesigningcert.sh`
 
 # Extra scripts
 * `test.sh`: Ignore this, it's used to test shell / script commands
 * `decryptkey.sh`: Removes the encryption from a private key. This is often necessary when the key
 has to be installed on a server
-* `copyesxi.sh`: Copies the necessary certificates to a VMWare ESXi server into the correct directories
-* `backup.sh`: This is the only bash script in the collection; It creates a zip file with all the
-keys and certificates in it.
+* `addcerttoproxmox.py`: Installs a certificate to a Proxmox VE instance
+* `addrootcatojava`: Installs the root CA to the Java trusted key store
+* `backup.sh`: Creates a zip file with all the keys and certificates in it.
 * `cleanup.sh`: Performs a complete reset; All certificates and keys will be deleted, including the
 root CA. It's usually used during the test phase.
 * `cleanup-clientcertsonly.sh`: Keeps the root/issuing CA intact, and cleans all certificates. I used
-this when I changed the internal domain name, and needed to re-issue all of the server certificates.
+this when I changed the internal domain name, and needed to re-issue all the server certificates.
+* `generateservercertwithlocalhost.sh`: Experimental script, use instead of `generateservercert.sh` if `localhost` must also be a valid host.
 
 # History
 * &#x200B;19. October 2019: Initial version
 * &#x200B;14. January 2022: Add certificate renewal
+* &#x200B;10. March 2024: Add code signing certificate; Add a Python script to install certs to Proxmox
 
