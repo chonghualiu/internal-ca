@@ -8,7 +8,6 @@ DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
 cd $DIR
 
 cp variables.sh.example variables.sh
-chmod +x variables.sh
 
 mkdir -p rootca/private rootca/crl rootca/certs rootca/newcerts
 mkdir -p issuingca/private issuingca/certs issuingca/csr issuingca/crl issuingca/newcerts
