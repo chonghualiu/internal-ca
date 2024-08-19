@@ -1,10 +1,9 @@
-#!/bin/sh
-# (c) Martin Erzberger 2019
+#!/usr/bin/env bash
+# (c) Martin Erzberger 2019, Chonghua Liu 2024
 # Generates the Root- and Issuing CA certificates
 
-# Import the variables and change into CA directory
-DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
-cd $DIR
+set -euo pipefail
+
 source ./variables.sh
 # Read-in the passwords for the two keys (root and issuing)
 read -sp 'Root CA Private key password: ' ROOTKEYPWD

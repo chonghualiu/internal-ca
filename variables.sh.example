@@ -1,22 +1,24 @@
-#!/bin/sh
-# (c) Martin Erzberger 2019
+#!/usr/bin/env bash
+# (c) Martin Erzberger 2019, Chonghua Liu 2024
 # Edit this file to setup everything the way you like it
 
+set -euo pipefail
+
 # Full path to the openssl executable
-OPENSSL=/usr/local/opt/openssl@1.1/bin/openssl
+OPENSSL=$(command -v openssl)
 
 # The domain name of your intranet
 DOMAIN=example.com
 
 # Project root path
-export PROJECTROOT=~/Development/home-ca
+export PROJECTROOT=~/internal-ca
 
 # Properties of the certificates
-export COUNTRY=CH
-export STATE=ZH
-export CITY=Zurich
+export COUNTRY=CA
+export STATE=ON
+export CITY=Toronto
 export ORG=Private
-export ORGUNIT=Private
+export ORGUNIT='Private Unit'
 export EMAIL=adalbert@example.com
 export ROOTCANAME='Example Root CA'
 export ISSUINGCANAME='Example Issuing CA'
