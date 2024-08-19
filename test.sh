@@ -1,5 +1,5 @@
-#!/bin/sh
-# (c) Martin Erzberger 2019
+#!/usr/bin/env bash
+# (c) Martin Erzberger 2019, Chonghua Liu 2024
 # Test script for various purposes
 
 # Import the variables and change into CA directory
@@ -10,4 +10,3 @@ source ./variables.sh
 echo 'Openssl version:' $($OPENSSL version)
 echo Domain: $DOMAIN
 echo 'Project directory contents' $(ls $PROJECTROOT)
-

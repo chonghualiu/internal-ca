@@ -3,6 +3,10 @@
 
 set -euo pipefail
 
+# Change into CA directory
+DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
+cd $DIR
+
 cp variables.sh.example variables.sh
 chmod +x variables.sh
 

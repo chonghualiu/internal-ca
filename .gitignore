@@ -1,14 +1,12 @@
 *.iml
-/.idea/
-/variables.sh
+variables.sh
 certs/
 crl/
 csr/
-venv/
+.venv
 newcerts/
 private/
 serial*
 crlnumber*
 index.txt*
 certbackup.zip
-.DS_Store

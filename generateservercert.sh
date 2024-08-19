@@ -1,6 +1,8 @@
-#!/bin/bash
-# (c) Martin Erzberger 2019
+#!/usr/bin/env bash
+# (c) Martin Erzberger 2019, Chonghua Liu 2024
 # Create a server certificate
+
+set -euo pipefail
 
 # Import the variables and change into CA directory
 DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"

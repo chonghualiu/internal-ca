@@ -1,5 +1,5 @@
-#!/bin/sh
-# (c) Martin Erzberger 2024
+#!/usr/bin/env bash
+# (c) Martin Erzberger 2019, Chonghua Liu 2024
 # Backup all certificates
 
 # Change into CA directory
