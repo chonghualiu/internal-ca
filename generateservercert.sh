@@ -27,7 +27,7 @@ export SERVERKEYPWD
 
 cd issuingca
 # Make the signing request
-$OPENSSL req -newkey rsa:2048 -keyout private/$1.$DOMAIN.key.pem \
+$OPENSSL req -newkey rsa:4096 -keyout private/$1.$DOMAIN.key.pem \
       -config openssl.cnf \
       -passout env:SERVERKEYPWD \
       -subj "/CN=$1.$DOMAIN" \
