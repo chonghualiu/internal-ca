@@ -1,9 +1,9 @@
-#!/bin/bash
-# (c) Martin Erzberger 2023
+#!/usr/bin/env bash
+# (c) Martin Erzberger 2023, Chonghua Liu 2024
 # Show the expiry date of all certificates found in the respecting directories
 
 # exit when any command fails
-set -e
+set -euo pipefail
 
 # Import the variables and change into CA directory
 DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
@@ -17,4 +17,3 @@ do
   printf '%-35s' "${file##*/}"
   $OPENSSL x509 -noout -text -in $file | grep "Not After :" | cut -c24-
 done
-

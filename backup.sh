@@ -2,11 +2,13 @@
 # (c) Martin Erzberger 2019, Chonghua Liu 2024
 # Backup all certificates
 
+set -euo pipefail
+
 # Change into CA directory
 DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
 cd $DIR
 
-read -p "This will backup all certificates into a ZIP file. Are you sure? " -n 1 -r
+read -p "This will backup all certificates into a ZIP file. Are you sure? " -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then

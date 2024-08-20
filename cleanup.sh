@@ -8,7 +8,7 @@ set -euo pipefail
 DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
 cd $DIR
 
-read -p "This will delete all certificates, including CA and Issuing CA! Are you sure? " -n 1 -r
+read -p "This will delete all certificates, including CA and Issuing CA! Are you sure? " -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
